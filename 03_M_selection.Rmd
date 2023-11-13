@@ -1,0 +1,80 @@
+---
+title: "03_M_selection"
+author: "Felipe Walter Pereira"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Load and prepare the WWF ecoregions shapefile:
+
+```{r}
+library(rgdal)
+ecor <- readOGR(dsn = "Data/ecoregions", layer = "wwf_terr_ecos")
+wgs <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+WGS84 <- CRS(wgs)
+ecor <- spTransform(ecor, WGS84)
+```
+
+For the next chunk you should download the Worldclim biovariables at 30 arc seconds resolution (available in: https://www.worldclim.org/data/worldclim21.html), then save the varialbes in a subfolder entitled "wc2.1_30s_bio".
+
+Open and stack biovariables:
+
+```{r}
+lista.clima<-paste("wc2.1_30s_bio/", 
+                   list.files(path="wc2.1_30s_bio/"), sep="")
+wc<-stack(lista.clima)
+```
+
+Rename the variables names to the "bio" pattern:
+
+```{r}
+names(wc)<-c("bio01", "bio10", "bio11", "bio12", "bio13", "bio14",
+                  "bio15", "bio16", "bio17", "bio18", "bio19", "bio02",
+                  "bio03", "bio04", "bio05", "bio06", "bio07", "bio08", "bio09")
+```
+
+Select only the variables of interest: mean annual temperature (bio1), mean diurnal range (bio2), max temperature of warmest month (bio5), temperature annual range (bio7), annual precipitation (bio12), precipitation seasonality (bio15), precipitation of warmest quarter and (bio18), precipitation of coldest quarter (bio19).
+
+```{r}
+wc <- wc[[c("bio01", "bio12", "bio15", "bio18", "bio19", "bio02",
+            "bio05", "bio07")]]
+```
+
+Let's create the calibration areas (M) for each species, First, for each species separatedly, we select the ecorregions where the species occurs.
+
+```{r}
+ms <- lapply(1:length(occs), function(x) {
+  polygon_selection(occs[[x]], "longitude", "latitude", polygons = ecor)
+})
+```
+
+Next, we create subforlders where M files will be saved
+
+```{r}
+mfol <- "ecor_Ms"
+dir.create(mfol)
+```
+
+Finally, we define the Ms based on the ecoregions plus the ones next to those selected in the previous step
+
+```{r}
+mr <- lapply(1:length(ms), function(x) {
+  pols <- ms[[x]]@polygons
+  cors <- do.call(rbind, lapply(pols, function(y) {y@Polygons[[1]]@coords}))
+  cors <- cors[sample(nrow(cors), 10000, replace=T), ]
+  cors <- SpatialPointsDataFrame(coords = cors, data = data.frame(ID = 1:nrow(cors)),
+                                 proj4string = WGS84, match.ID = F)
+  buf <- suppressWarnings(rgeos::gBuffer(cors, width = 0.01, byid = T))
+  buf <- SpatialPolygonsDataFrame(buf, data = data.frame(ID = cors$ID), match.ID = F)
+  pols <- ecor[buf, ]
+  mask_var <- mask(crop(wc, pols), pols)
+  name <- paste0(mfol, "/", nams[x], "_ecorregions")
+  dir.create(name)
+  writeOGR(pols, name, "polygon_selection", driver = "ESRI Shapefile")
+  rnames <- paste0(name, "/", names(mask_var), ".tif")
+  s <- lapply(1:length(rnames), function(x) {
+    raster::writeRaster(mask_var[[x]], filename = rnames[x], format = "GTiff")
+  })
+  s <- x
+})
+```

@@ -1,0 +1,435 @@
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:41:17 2023
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:42:22 2023
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:42:48 2023
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:43:44 2023
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:49:50 2023
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:18 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.04 0 0.13 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+64
+1
+Maximum number of records after thinning: 64
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Boana_leptolineataoccurrences_1km
+Writing file: kuenm_frogs/Boana_leptolineataoccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:19 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0 0.09 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+7
+1
+Maximum number of records after thinning: 7
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Melanophryniscus_cambaraensisoccurrences_1km
+Writing file: kuenm_frogs/Melanophryniscus_cambaraensisoccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:19 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0.03 0.66 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+10
+1
+Maximum number of records after thinning: 10
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Melanophryniscus_simplexoccurrences_1km
+Writing file: kuenm_frogs/Melanophryniscus_simplexoccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:20 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0 0.09 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+23
+1
+Maximum number of records after thinning: 23
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Proceratophrys_braunioccurrences_1km
+Writing file: kuenm_frogs/Proceratophrys_braunioccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:21 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.05 0 0.64 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+39
+1
+Maximum number of records after thinning: 39
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Pseudis_cardosoioccurrences_1km
+Writing file: kuenm_frogs/Pseudis_cardosoioccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:22 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0 0.18 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+33
+1
+Maximum number of records after thinning: 33
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Rhinella_henselioccurrences_1km
+Writing file: kuenm_frogs/Rhinella_henselioccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:50:22 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.03 0.03 0.63 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+69
+1
+Maximum number of records after thinning: 69
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Sphaenorhynchus_surdusoccurrences_1km
+Writing file: kuenm_frogs/Sphaenorhynchus_surdusoccurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:08 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0 0.11 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+64
+1
+Maximum number of records after thinning: 64
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Boana_leptolineata/occurrences_1km
+Writing file: kuenm_frogs/Boana_leptolineata/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:09 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0 0.08 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+7
+1
+Maximum number of records after thinning: 7
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Melanophryniscus_cambaraensis/occurrences_1km
+Writing file: kuenm_frogs/Melanophryniscus_cambaraensis/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:09 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0.02 1.06 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+10
+1
+Maximum number of records after thinning: 10
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Melanophryniscus_simplex/occurrences_1km
+Writing file: kuenm_frogs/Melanophryniscus_simplex/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:11 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0.01 0.18 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+23
+1
+Maximum number of records after thinning: 23
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Proceratophrys_brauni/occurrences_1km
+Writing file: kuenm_frogs/Proceratophrys_brauni/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:11 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.01 0.01 0.61 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+39
+1
+Maximum number of records after thinning: 39
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Pseudis_cardosoi/occurrences_1km
+Writing file: kuenm_frogs/Pseudis_cardosoi/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:12 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0 0.09 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+33
+1
+Maximum number of records after thinning: 33
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Rhinella_henseli/occurrences_1km
+Writing file: kuenm_frogs/Rhinella_henseli/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:51:13 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.01 0 0.61 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+69
+1
+Maximum number of records after thinning: 69
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Created new output directory: kuenm_frogs/Sphaenorhynchus_surdus/occurrences_1km
+Writing file: kuenm_frogs/Sphaenorhynchus_surdus/occurrences_1km/thinned_data_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:16 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.01 0.01 0.11 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+64
+1
+Maximum number of records after thinning: 64
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Boana_leptolineata
+Writing file: kuenm_frogs/Boana_leptolineata//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:16 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0 0.12 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+7
+1
+Maximum number of records after thinning: 7
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Melanophryniscus_cambaraensis
+Writing file: kuenm_frogs/Melanophryniscus_cambaraensis//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:17 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.03 0.01 0.59 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+10
+1
+Maximum number of records after thinning: 10
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Melanophryniscus_simplex
+Writing file: kuenm_frogs/Melanophryniscus_simplex//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:18 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.02 0 0.45 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+23
+1
+Maximum number of records after thinning: 23
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Proceratophrys_brauni
+Writing file: kuenm_frogs/Proceratophrys_brauni//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:19 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0.03 0.59 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+39
+1
+Maximum number of records after thinning: 39
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Pseudis_cardosoi
+Writing file: kuenm_frogs/Pseudis_cardosoi//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:20 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0 0 0.15 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+33
+1
+Maximum number of records after thinning: 33
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Rhinella_henseli
+Writing file: kuenm_frogs/Rhinella_henseli//thinned_occ_thin1.csv
+********************************************** 
+ Beginning Spatial Thinning.
+ Script Started at: Mon Nov 13 14:55:20 2023
+
+Thinning Parameter Used (in km): 1
+Number of replicates of thinning script: 1
+
+Elapsed time for thinning completion
+0.05 0.02 0.64 NA NA
+
+Number of data.frames per locations retained
+loc.cnt df.freq
+69
+1
+Maximum number of records after thinning: 69
+Number of data.frames with max records: 1
+
+**New *.csv file creation:**
+Writing new *.csv files to output directory: kuenm_frogs/Sphaenorhynchus_surdus
+Writing file: kuenm_frogs/Sphaenorhynchus_surdus//thinned_occ_thin1.csv

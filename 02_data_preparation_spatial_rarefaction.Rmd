@@ -1,0 +1,48 @@
+---
+title: "02_data_preparation_spatial_rarefaction"
+author: "Felipe Walter Pereira"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Open the occurrences records
+
+```{r}
+sp_files <- list.files("Data/occurrences", pattern = ".csv$",
+                       full.names = TRUE)
+sp_records <- lapply(sp_files, read.csv)
+```
+
+Create subfolders (directories) for each species separatedly with its occurrences records
+
+```{r}
+dir.create("kuenm_frogs")
+folders <- sapply(sp_records, function(x) {
+  fol_nam <- as.character(x[1, 1])
+  sub_name <- paste0("kuenm_frogs/", fol_nam)
+  dir.create(sub_name)
+  y <- unique(data.frame(species = fol_nam, x[, 2:3]))
+  write.csv(y, paste(sub_name, "occurrences.csv", sep = "/"), row.names = FALSE)
+  return(sub_name)
+})
+```
+
+Thinning records (spatial rarefaction) with 1 km buffers.
+
+```{r}
+library(spThin)
+thins1 <- lapply(1:length(sp_records), function(x) {
+  th <- thin(sp_records[[x]], "latitude", "longitude", "species", thin.par = 1,
+             reps = 1, locs.thinned.list.return = FALSE, write.files = TRUE,  out.dir = paste0(folders[x]), out.base = "/thinned_occ")
+})
+```
+
+All species occurrences and names
+
+```{r}
+sps <- dir("kuenm_frogs", full.names = TRUE)
+occs <- lapply(sps, function(x) {
+  read.csv(list.files(x, pattern = "_thin1.csv$", full.names = TRUE))
+})
+nams <- dir("kuenm_frogs")
+```

@@ -1,0 +1,49 @@
+---
+title: "01_required_packages"
+author: "Felipe Walter Pereira"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load the required packages
+
+```{r}
+packages <- c("devtools", "raster", "rgdal", "rgeos", "scales", "spThin")
+req_pack <- packages[!(packages %in% installed.packages()[, "Package"])]
+```
+
+Install the required packages if necessary
+
+```{r}
+if (length(req_pack) > 0) {install.packages(req_pack, dependencies = TRUE)}
+```
+
+The following chunk fix 'rgdal' and 'rgeos' dependencies
+
+```{r}
+rgeos_path <- "https://cran.r-project.org/src/contrib/Archive/rgeos/rgeos_0.6-4.tar.gz"
+if(!require("rgeos")){
+  install.packages(rgeos_path,repos = NULL,type = "source")
+}
+rgdal_path <- "https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.6-7.tar.gz"
+if(!require("rgdal")){
+  install.packages(rgdal_path, repos = NULL,type = "source")
+}
+```
+
+
+'grinnell' and 'kuenm' R packages installation (both require 'rgeos' and 'rgdal')
+
+```{r}
+devtools::install_github("fmachados/grinnell")
+library("grinnell")
+devtools::install_github("marlonecobos/kuenm")
+library("kuenm")
+```
+
+
+
