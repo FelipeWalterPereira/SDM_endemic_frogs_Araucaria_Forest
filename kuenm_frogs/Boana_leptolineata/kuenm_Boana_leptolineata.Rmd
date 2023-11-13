@@ -1,0 +1,145 @@
+---
+title: "kuenm_Boana_leptolieata"
+author: "Felipe Walter Pereira"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Required packages:
+
+```{r}
+require(raster)
+require(usdm)
+require(rgdal)
+require(viridis)
+require(glue)
+require(kuenm)
+```
+
+For the next steps, you should have (in the species subfoder) the masked bioclimatic variables (Worldclim at 30 arc seconds resolution). For the current scenario, the current variables were masked to the M area (created indidually for each species based on the ecoregions where the species occurs plus the next ones). The masked current variables were saved in a subfolder entitled "Current", in the species folder. The projection variables (G) were masked to the Araucaria Forest area (shapefile availabe in /Data/ecorregions/), our region of interest in this study. Important: the projection variables include the future scenarios and also the current scenario, masked to the Araucaria Forest. The projection variables should be saved in a folder entitled "G_variables" with a subfolder "Set_1" and subfolders for each scenario, with the .asc variables.
+
+Please check the "kuenm_Boana_leptolineata" R script for an example of these processes.
+
+So, let's prepare the swd data for kuenm.
+
+First, we need to stack the current variables:
+
+```{r}
+list.initial<-paste("Current/", 
+                list.files(path="Current/"), sep="")
+
+st.initial<-stack(list.initial)
+```
+
+Attribute a folder to be created for background data for MaxEnt:
+
+```{r}
+back <- "Background"
+```
+
+Read the thinned occurences data:
+
+```{r}
+occ_joint <- read.csv("thinned_occ_thin1.csv")
+```
+
+Prepare the data in swd format for kuenm:
+
+```{r}
+prep_swd <- prepare_swd(occ_joint, species = "species", longitude = "longitude",
+                        latitude = "latitude", train.proportion = 0.75,
+                        var.sets = NULL,
+                        raster.layers = st.initial, save = T, name.occ = "occo",
+                        back.folder = "back",
+                        sample.size = 10000)
+```
+
+Now we have all the necessary data for construct the models. Please make sure the MaxEnt are installed in your computer and attibute the MaxEnt path below in the function "maxent.path". In my computer, MaxEnt is installed in the "C:/maxent".
+
+The following chunk set the arguments for kuenm function that create (and evaluate) the candidate models:
+
+```{r}
+occ.joint <- "occo_joint.csv"
+occ.tra <- "occo_train.csv"
+occ.test <- "occo_test.csv"
+back.dir <- "back"
+batch.cal <- "Candidate_models"
+out.dir.models <- "Candidate_Models"
+reg.mult <- c(seq(0.1, 1, 0.3), seq(2,5,1))
+f.clas <- "all"
+args <- NULL
+maxent.path <- "C:/maxent"
+out.dir.eval <- "Calibration_results"
+wait <- FALSE
+run <- TRUE
+
+kuenm_cal_swd(occ.joint, occ.tra, occ.test, back.dir, batch = batch.cal,
+              out.dir.models, reg.mult, f.clas,
+              max.memory = 1000, args = NULL, maxent.path,
+              selection = "OR_AICc", threshold = 5,
+              rand.percent = 50, iterations = 500,
+              kept = TRUE, out.dir.eval)
+```
+
+After the calibration and evaluation of candidate models, the selected models will be available in the "Calibration_results" folder. With the selected models, the following step construct the final models. 
+
+```{r}
+batch.fin <- "Final_models"
+mod.dir <- "Final_models"
+project <- TRUE
+G.var.dir <- "G_variables"
+write_mess <- FALSE
+write_clamp <- FALSE
+wait1 <- FALSE
+run1 <- TRUE
+args <- NULL
+
+kuenm_mod_swd(occ.joint, back.dir, out.eval = out.dir.eval, batch = batch.fin, rep.n = 10,
+              rep.type = "Bootstrap", jackknife = FALSE,
+              max.memory = 1000, out.format = "logistic",
+              project = TRUE, G.var.dir, ext.type = "all",
+              write.mess = FALSE, write.clamp = FALSE, maxent.path,
+              args = NULL, out.dir = mod.dir, wait = FALSE, run = TRUE)
+```
+
+Now the final models replicates are available. In the following sections there are "post-modelling" procedures - models stats and binarized maps for each scenarios.
+
+In the following chunk we extract the median of the final models replicates:
+
+```{r}
+sp.name <- "Boana_leptolineata"
+fmod.dir <- "Final_Models"
+format <- "asc"
+statistics <- "med"
+project <- TRUE
+scenarios <- c("Current", "FIO_126_50", "FIO_126_70", "FIO_585_50", "FIO_585_70", 
+               "Had_126_50", "Had_126_70", "Had_585_50", "Had_585_70",
+               "MPI_126_50", "MPI_126_70", "MPI_585_50", "MPI_585_70")
+ext.type <- "E" 
+out.dir <- "Final_Model_Stats"
+
+kuenm_modstats_swd(sp.name, fmod.dir, format = "asc", statistics,
+                   proj.scenarios = scenarios, ext.type, out.dir = "Final_Model_Stats")
+```
+
+In the following chunk we get the binarized the maps by setting a threshold of 5% omission rate criteria:
+
+```{r}
+occ <- "occo_joint.csv"
+fmod_stats <- "Final_Model_Stats"
+thres <- 5
+curr <- "Current"
+time.periods <- c("50", "70")
+emi_scenarios <- c("126", "585")
+c_mods <- c("FIO", "Had", "MPI")
+ext_type <- "E"
+out_dir1 <- "Projection_Changes"
+
+kuenm_projchanges(occ = occ, fmod.stats = fmod_stats, threshold = thres,
+                  current = curr, time.periods = time.periods, emi.scenarios = emi_scenarios,
+                  clim.models = c_mods, ext.type = ext_type, out.dir = out_dir1)
+```
+
+Now the binarized maps of potential distribution for the species are available for each scenario and we can quantify the changes in distriution area. We quantify the changes and made the maps in QGIS.
+
+For the other species, you should conduct the same processes made here. So, I reccomend to copy this Rmarkdown for the other species. The processe are the same, but are made individually for each species in its respective folders.
