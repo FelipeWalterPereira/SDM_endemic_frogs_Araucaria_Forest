@@ -1,5 +1,5 @@
 
-# SDM for frogs endemic to the Araucaria Forest using kuenm R package
+# SDMs for endemic frogs in the Araucaria Forest using kuenm R package
 
 This project aimed to model the potential distribution for seven frog
 species endemic to the Araucaria Forest. The SDMs were performed in the
