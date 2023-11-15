@@ -2,10 +2,14 @@
 title: "kuenm_Boana_leptolieata"
 author: "Felipe Walter Pereira"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
-Required packages:
+#Required packages
+
+Check the "01_required_packages" R markdown for the required packages. 
 
 ```{r}
 require(raster)
@@ -16,13 +20,17 @@ require(glue)
 require(kuenm)
 ```
 
-For the next steps, you should have (in the species subfoder) the masked bioclimatic variables (Worldclim at 30 arc seconds resolution). For the current scenario, the current variables were masked to the M area (created indidually for each species based on the ecoregions where the species occurs plus the next ones). The masked current variables were saved in a subfolder entitled "Current", in the species folder. The projection variables (G) were masked to the Araucaria Forest area (shapefile availabe in /Data/ecorregions/), our region of interest in this study. Important: the projection variables include the future scenarios and also the current scenario, masked to the Araucaria Forest. The projection variables should be saved in a folder entitled "G_variables" with a subfolder "Set_1" and subfolders for each scenario, with the .asc variables.
+#Bioclimatic variables preparation 
 
-Please check the "kuenm_Boana_leptolineata" R script for an example of these processes.
+For the next steps, you should have (in the species subfoder) the masked bioclimatic variables (Worldclim at 30 arc seconds resolution). For the current scenario, the current variables were masked to the M area (created individually for each species based on the ecoregions where the species occurs plus the next ones). The masked current variables were saved in a subfolder entitled "Current", in the species folder. The projection variables (G) were masked to the Araucaria Forest area (shapefile available in /Data/ecorregions/), our region of interest in this study. Important: the projection variables include the future scenarios and also the current scenario, masked to the Araucaria Forest. The projection variables should be saved in a folder entitled "G_variables" with a subfolder "Set_1" and subfolders for each scenario, with the .asc variables.
+
+Please check the "kuenm_variables_prep" R script for an example of these processes.
+
+#Prepare swd data
 
 So, let's prepare the swd data for kuenm.
 
-First, we need to stack the current variables:
+##First, we need to stack the current variables:
 
 ```{r}
 list.initial<-paste("Current/", 
@@ -31,19 +39,19 @@ list.initial<-paste("Current/",
 st.initial<-stack(list.initial)
 ```
 
-Attribute a folder to be created for background data for MaxEnt:
+##Attribute a folder to be created for background data for MaxEnt
 
 ```{r}
 back <- "Background"
 ```
 
-Read the thinned occurences data:
+##Read the thinned occurences data
 
 ```{r}
 occ_joint <- read.csv("thinned_occ_thin1.csv")
 ```
 
-Prepare the data in swd format for kuenm:
+##Prepare the data in swd format for kuenm:
 
 ```{r}
 prep_swd <- prepare_swd(occ_joint, species = "species", longitude = "longitude",
@@ -56,7 +64,9 @@ prep_swd <- prepare_swd(occ_joint, species = "species", longitude = "longitude",
 
 Now we have all the necessary data for construct the models. Please make sure the MaxEnt are installed in your computer and attibute the MaxEnt path below in the function "maxent.path". In my computer, MaxEnt is installed in the "C:/maxent".
 
-The following chunk set the arguments for kuenm function that create (and evaluate) the candidate models:
+#Calibration and evaluation of the candidate models
+
+The following chunk set the arguments for kuenm function that create (and evaluate) the candidate models. There are some bugs with the evaluation process. If the progress bar stops (for more than a few minutes), I recommend to interrupt the analysis, delete the "Candidate_models" batch file and the "Candidate_models" folder and try again this chunk (it happened a few time when I ran this function)
 
 ```{r}
 occ.joint <- "occo_joint.csv"
@@ -78,8 +88,10 @@ kuenm_cal_swd(occ.joint, occ.tra, occ.test, back.dir, batch = batch.cal,
               max.memory = 1000, args = NULL, maxent.path,
               selection = "OR_AICc", threshold = 5,
               rand.percent = 50, iterations = 500,
-              kept = TRUE, out.dir.eval)
+              kept = FALSE, out.dir.eval)
 ```
+
+#Final models
 
 After the calibration and evaluation of candidate models, the selected models will be available in the "Calibration_results" folder. With the selected models, the following step construct the final models. 
 
@@ -104,6 +116,8 @@ kuenm_mod_swd(occ.joint, back.dir, out.eval = out.dir.eval, batch = batch.fin, r
 
 Now the final models replicates are available. In the following sections there are "post-modelling" procedures - models stats and binarized maps for each scenarios.
 
+#Calculaion of descreptive statistics of final models
+
 In the following chunk we extract the median of the final models replicates:
 
 ```{r}
@@ -122,6 +136,8 @@ kuenm_modstats_swd(sp.name, fmod.dir, format = "asc", statistics,
                    proj.scenarios = scenarios, ext.type, out.dir = "Final_Model_Stats")
 ```
 
+#Getting the binarized maps
+
 In the following chunk we get the binarized the maps by setting a threshold of 5% omission rate criteria:
 
 ```{r}
@@ -136,10 +152,13 @@ ext_type <- "E"
 out_dir1 <- "Projection_Changes"
 
 kuenm_projchanges(occ = occ, fmod.stats = fmod_stats, threshold = thres,
-                  current = curr, time.periods = time.periods, emi.scenarios = emi_scenarios,
-                  clim.models = c_mods, ext.type = ext_type, out.dir = out_dir1)
+                  current = curr, time.periods = time.periods, 
+                  emi.scenarios = emi_scenarios, clim.models = c_mods, 
+                  ext.type = ext_type, out.dir = out_dir1)
 ```
 
-Now the binarized maps of potential distribution for the species are available for each scenario and we can quantify the changes in distriution area. We quantify the changes and made the maps in QGIS.
+Now the binarized maps of potential distribution for the species are available for each scenario and we can quantify the changes in distribution area. We quantify the changes and made the maps in QGIS.
 
-For the other species, you should conduct the same processes made here. So, I reccomend to copy this Rmarkdown for the other species. The processe are the same, but are made individually for each species in its respective folders.
+Ps: it returns an error message "Error in data.frame(Raster_value = vals, Description = descriptions) : arguments imply differing number of rows: 5, 6", but the raster files has been created correctly. Thus, I've just ignored it.
+
+For the other species, copy this Rmarkdown and follow the same process (just change the species name in 'sp.name' at line 124).
