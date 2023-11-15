@@ -45,5 +45,27 @@ devtools::install_github("marlonecobos/kuenm")
 library("kuenm")
 ```
 
+# renv - managing the packages versions
 
+```{r}
+install.packages("renv")
+library(renv)
+```
 
+Copying packages into project library
+
+```{r}
+renv::init()
+```
+
+Checking the dependences status
+
+```{r}
+renv::status()
+```
+
+Use the following function whenever install or update a package - it ensures that the package version will be registered in the renv library
+
+```{r}
+renv::snapshot()
+```

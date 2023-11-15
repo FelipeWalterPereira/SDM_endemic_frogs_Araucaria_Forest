@@ -1,0 +1,3 @@
+## Metadata
+
+The data (in Data/occurrences) is quite simple. It consists of .csv files for each species containing three columns: "species", "longitude", "latitude", in that order. The species names are separeded by an underscore (e.g. *Boana_leptolineata*). The coordinates are in the decimal degrees (DD) format.

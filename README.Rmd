@@ -22,6 +22,6 @@ For the directory in its current state, I ran the first two Rmarkdown files and 
 
 **I strongly recommend to check the [kuenm repository](https://github.com/marlonecobos/kuenm#references) to understand how the kuenm package works.** 
 
-# References
+## References
 
 Cobos ME, Peterson AT, Barve N, Osorio-Olvera L. 2019. kuenm: an R package for detailed development of ecological niche models using Maxent. PeerJ 7:e6281 https://doi.org/10.7717/peerj.6281
