@@ -1,15 +1,15 @@
 ---
-title: "01_required_packages"
+title: "Required packages"
 author: "Felipe Walter Pereira"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-Load the required packages
+## Load the required packages
 
 ```{r}
 packages <- c("devtools", "raster", "rgdal", "rgeos", "scales", "spThin")
@@ -45,7 +45,7 @@ devtools::install_github("marlonecobos/kuenm")
 library("kuenm")
 ```
 
-# renv - managing the packages versions
+## renv - managing the packages versions
 
 ```{r}
 install.packages("renv")

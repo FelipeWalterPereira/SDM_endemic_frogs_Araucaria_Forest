@@ -1,9 +1,13 @@
 ---
-title: "02_data_preparation_spatial_rarefaction"
+title: "Data preparation and spatial rarefaction"
 author: "Felipe Walter Pereira"
 date: "`r Sys.Date()`"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
 
 Open the occurrences records
 

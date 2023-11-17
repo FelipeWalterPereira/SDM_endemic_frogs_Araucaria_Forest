@@ -1,9 +1,13 @@
 ---
-title: "03_M_selection"
+title: "Delimitation of calibration areas (M)"
 author: "Felipe Walter Pereira"
 date: "`r Sys.Date()`"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
 
 Load and prepare the WWF ecoregions shapefile:
 
